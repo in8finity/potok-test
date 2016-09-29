@@ -1,0 +1,47 @@
+// Place all the styles related to the calculator controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.investment_calculator {
+
+	margin: 3em auto 3em auto;
+	padding: 0em 1em 1em;
+	width: 500px;
+	border: 1px solid black;
+	font-size: 27px;
+	line-height: 1.5em;
+
+	h1 {
+	    line-height: 1em;
+	}
+
+	.investment_calculator__invested_value
+	{
+		white-space:nowrap;
+		margin-bottom:1em;
+	}
+
+	input[type='text']{
+		border-width: 0px 0px 1px 0px;
+		border-style: solid black;
+		outline: none;
+		font-size: 27px;
+		max-width: 50%;
+		text-align: center;
+	}
+
+	.calculation_result__real_interest_value, .calculation_result__real_interest_rate,
+	.calculation_result__planned_interest_value, .calculation_result__planned_interest_rate{
+		font-weight: bold;
+	}
+
+	.calculation_result__real_interest_section{
+		margin-top:1.5em;
+	}
+}
+
+.investment_calculator.ru_locale{
+	input[type='text']{
+		max-width: 45%;
+	}
+}

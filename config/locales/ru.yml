@@ -19,14 +19,14 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
-  calculator_title: "Investment calculator"
-  if_we_go_as_planned: "If everything will go according the plan "
-  you_will_get: "you will get"
-  by_planned_interest_rate: "by planned interest rate of"
-  by_real_intrest_rate: "by real interest rate of"
-  but_now_things_going: "But now things going "
-  better: "better"
-  worser: "worser"
-  and: "and"
-  you_have_invested: "You invest"
+ru:
+  calculator_title: "Калькулятор инвестора"
+  if_we_go_as_planned: "Если все пойдет по плану"
+  you_will_get: "вы заработаете"
+  by_planned_interest_rate: "по запланированной ставке"
+  by_real_intrest_rate: "по актуальной ставке"
+  but_now_things_going: "Но сейчас дела идут "
+  better: "лучше"
+  worser: "хуже"
+  and: "и"
+  you_have_invested: "Вы инвестируете"

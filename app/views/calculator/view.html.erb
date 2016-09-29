@@ -1,0 +1,23 @@
+
+<%=form_tag "calculator/calculate", name: :calculator, class:"investment_calculator "+@locale.to_s+"_locale" do%>
+	<h1><%=t(:calculator_title)%></h1>
+	<div class="investment_calculator__invested_value"><label for="invested_value"><%=t(:you_have_invested)%></label>&nbsp;<%=text_field_tag :invested_value, @calculated_interests_data[:invested_value]%>&nbsp;руб.
+	</div>
+	
+	<div class="calculation_result">
+		<div class="calculation_result__planned_interest_section">
+			<%=t(:if_we_go_as_planned)%> 
+			<%=t(:you_will_get)%> <span class="calculation_result__planned_interest_value">
+			<%=@calculated_interests_data[:planned_interest]%>&nbsp;<%=@calculated_interests_data[:currency]%></span>  
+			<%=t(:by_planned_interest_rate)%> <span class="calculation_result__planned_interest_rate">
+			<%=@calculated_interests_data[:planned_interest_rate]%></span>
+		</div>
+		<div class="calculation_result__real_interest_section">
+			<%=t(:but_now_things_going)%> <span class="calculation_result__real_interest_shift"><%=@calculated_interests_data[:shift]%></span>
+			<%=t(:and)%> <%=t(:you_will_get)%> <span class="calculation_result__real_interest_value">
+			<%=@calculated_interests_data[:real_interest]%>&nbsp;<%=@calculated_interests_data[:currency]%>
+			</span> 
+			<%=t(:by_real_intrest_rate)%> <span class="calculation_result__real_interest_rate"><%=@calculated_interests_data[:real_interest_rate]%></span>
+		</div>
+	</div>
+<%end%>
