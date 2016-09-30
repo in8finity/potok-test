@@ -1,6 +1,9 @@
 class CalculatorController < ApplicationController
 	
 	def view 
+		project = InvestmentProject.first
+		real_rate = project.actual_performance_rate
+		planned_rate = project.planned_performance_rate
 		invested_value = params.delete(:invested_value)
 		invested_value = 10000 if invested_value.nil?
 		invested_value = invested_value.to_f
@@ -8,17 +11,17 @@ class CalculatorController < ApplicationController
 		@calculated_interests_data = 
 			{
 				invested_value: invested_value,
-			 	planned_interest: ("%.2f" % (0.3*invested_value)),
-			 	real_interest: ("%.2f" % (0.267*invested_value)),
-			 	planned_interest_rate: "30%",
-			 	real_interest_rate: "26.7%",
+			 	planned_interest: ("%.2f" % (planned_rate*invested_value)),
+			 	real_interest: ("%.2f" % (real_rate*invested_value)),
+			 	planned_interest_rate: "#{"%.2f" % ((planned_rate*10000)/100.0)}%",
+			 	real_interest_rate: "#{"%.2f" % ((real_rate*10000)/100.0)}%",
 			 	shift: t(:worser),
-			 	currency: "руб."
+			 	currency: t(:currency_ru)
 			}
 		@rates = 
 			{
-				real: 26.7,
-				planned: 30
+				real: real_rate*100,
+				planned: planned_rate*100
 			}
 
 		respond_to do |format|
