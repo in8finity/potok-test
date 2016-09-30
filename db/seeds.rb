@@ -12,6 +12,10 @@ borrower2 = Borrower.new({name: "LLC2"})
 borrower2.save
 borrower3 = Borrower.new({name: "LLC3"})
 borrower3.save
+
+borrower4 = Borrower.new({name: "LLC4"})
+borrower4.save
+
 project = InvestmentProject.new({name: "Test"})
 project.save
 assignment1 = BorrowerProjectAssignment.new ({borrower: borrower1, investment_project: project})
@@ -40,6 +44,17 @@ assignment3.duration_months = 6
 assignment3.setup_dependent_params
 assignment3.start_period = (DateTime.now).to_date
 assignment3.save
+project.save
+
+assignment4 = BorrowerProjectAssignment.new ({borrower: borrower4, investment_project: project})
+assignment4.debt_value = Money.new(100000000, :rub)
+assignment4.interest_rate = 0.3
+assignment4.overrun_interest_rate = 0.5
+assignment4.duration_months = 6
+assignment4.setup_dependent_params
+assignment4.start_period = (DateTime.now).to_date
+assignment4.save
+
 project.save
 
 (1..6).each do |i|
@@ -109,6 +124,36 @@ end
 		target_period: (DateTime.now+(i-1).months).to_date})
 	payment.save
 end
+
+
+
+(1..4).each do |i|
+	payment = Payment.new ({
+		total_value: assignment4.total_monthly_payment,
+		actual_rate: assignment4.interest_rate,
+		debt_value: assignment4.monthly_payment_for_debt,
+		percent_value: assignment4.monthly_payment_for_percents,
+		borrower: borrower4,
+		investment_project: project,
+		processed_date: DateTime.now+i.months,
+		target_period: (DateTime.now+(i-1).months).to_date})
+	payment.save
+end
+
+(5..6).each do |i|
+	payment = Payment.new ({
+		total_value: assignment4.monthly_payment_for_debt + assignment4.pennalty_percents_payment,
+		actual_rate: assignment4.overrun_interest_rate,
+		debt_value: assignment4.monthly_payment_for_debt,
+		percent_value: assignment4.pennalty_percents_payment,
+		borrower: borrower4,
+		investment_project: project,
+		processed_date: DateTime.now+i.months,
+		target_period: (DateTime.now+(i-1).months).to_date})
+	payment.save
+end
+
+
 
 project.update_cached_info
 project.save
