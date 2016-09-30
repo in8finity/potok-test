@@ -18,6 +18,7 @@ class CalculatorController < ApplicationController
 			 	shift: t(:worser),
 			 	currency: t(:currency_ru)
 			}
+		@calculated_interests_data[:shift] = t(:better) if planned_rate*invested_value < real_rate*invested_value
 		@rates = 
 			{
 				real: real_rate*100,
